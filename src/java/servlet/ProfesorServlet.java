@@ -5,7 +5,6 @@
 package servlet;
 
 import EJB.EjbProfesor;
-import EJB.EjbUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -53,16 +52,15 @@ public class ProfesorServlet extends HttpServlet {
                 switch (operation){
                    
                     case "1" : 
-                        
                         String estudiante = request.getParameter("estudiante");
                         ejbProfesor.setNombreEstudiante(estudiante);
                         respuestas = ejbProfesor.buscarEstudiante();
-                      if(respuestas.length > 0 ){ 
-                        request.getSession().setAttribute("nombreUsuario", "username");
-                        request.getSession().setAttribute("tipoUsuario", "estudiante");
-                          for (int i = 0; i < respuestas.length; i++) {
+                        if(respuestas.length > 0 ){ 
+                            request.getSession().setAttribute("nombreUsuario", "username");
+                            request.getSession().setAttribute("tipoUsuario", "estudiante");
+                            for (int i = 0; i < respuestas.length; i++) {
                               out.println("<p>Encontrado " + respuestas[i] + "</p>");
-                          }
+                            }
                         }else{
                             response.sendRedirect("auth/signup.jsp");
                         }
@@ -74,11 +72,9 @@ public class ProfesorServlet extends HttpServlet {
                            out.println("<p>Grupo ha sido creado exitosamente</p>");
                         }else {
                             out.println("<p>Error intentando crear grupo" + resultado +"</p>");
+                             out.println("<a href='teacher/mainTeacher.jsp'>Regresar </a>");
                         }
                     default:
-                        
-                             
-                           
                 }  
                       
             out.println("</body>");
