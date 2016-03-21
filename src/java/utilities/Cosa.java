@@ -9,5 +9,6 @@ package utilities;
  * @author Sebastian
  */
 public class Cosa {
+
     
 }
